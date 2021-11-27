@@ -47,13 +47,14 @@ namespace Mistaken.RandomMessages
             {
                 yield return Timing.WaitForSeconds(UnityEngine.Random.Range(config.MinSec, config.MaxSec));
 
-                int randomint = UnityEngine.Random.Range(config.MinSec, config.MaxSec);
+                int randomint = UnityEngine.Random.Range(0, this.messages.Count);
                 string selectedmessage = this.messages[randomint];
 
-                Map.Broadcast(message: selectedmessage, duration: PluginHandler.Instance.Config.BroadcastTime);
+                Map.Broadcast(message: selectedmessage, duration: config.BroadcastTime);
+                this.Log.Debug($"Broadcasting {selectedmessage} for {config.BroadcastTime} seconds", config.VerbouseOutput);
                 this.messages.RemoveAt(randomint);
             }
-            while (Round.IsStarted && RoundPlus.RoundId == rid);
+            while (Round.IsStarted && RoundPlus.RoundId == rid && this.messages.Count > 0);
         }
     }
 }
