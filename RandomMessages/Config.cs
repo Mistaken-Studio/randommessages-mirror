@@ -26,13 +26,22 @@ namespace Mistaken.RandomMessages
         [Description("Auto Update Settings")]
         public Dictionary<string, string> AutoUpdateConfig { get; set; }
 
+        /// <summary>
+        /// Gets or sets the minimal value to broadcast a message.
+        /// </summary>
         [Description("Minimum time to broadcast a random message")]
         public int MinSec { get; set; } = 10;
 
+        /// <summary>
+        /// Gets or sets the maximal value to broadcast a message.
+        /// </summary>
         [Description("Maximum time to broadcast a random message")]
         public int MaxSec { get; set; } = 20;
 
-        [Description("How long should the message on the screen")]
+        /// <summary>
+        /// Gets or sets a value of how long the message should be displayed on the screen.
+        /// </summary>
+        [Description("How long should the message be on the screen")]
         public int BroadcastTime { get; set; } = 5;
     }
 }

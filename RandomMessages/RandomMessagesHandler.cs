@@ -4,7 +4,6 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using Exiled.API.Features;
 using MEC;
@@ -43,8 +42,7 @@ namespace Mistaken.RandomMessages
             yield return Timing.WaitForSeconds(UnityEngine.Random.Range(config.MinSec, config.MaxSec));
             while (Round.IsStarted)
             {
-                Random random = new Random();
-                int randomint = random.Next(this.messages.Count);
+                int randomint = UnityEngine.Random.Range(config.MinSec, config.MaxSec);
                 string selectedmessage = this.messages[randomint];
 
                 Map.Broadcast(message: selectedmessage, duration: (ushort)PluginHandler.Instance.Config.BroadcastTime);

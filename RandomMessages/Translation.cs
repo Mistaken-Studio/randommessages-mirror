@@ -13,6 +13,9 @@ namespace Mistaken.RandomMessages
     /// <inheritdoc/>
     public class Translation : ITranslation
     {
+        /// <summary>
+        /// Gets or sets a list of messages that will be displayed during the game.
+        /// </summary>
         [Description("List of messages that will be displayed during the game")]
         public List<string> Messages { get; set; } = new List<string>()
         {
