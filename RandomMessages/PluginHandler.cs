@@ -4,36 +4,36 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
+using System;
 using Exiled.API.Enums;
 using Exiled.API.Features;
-using System;
 
 namespace Mistaken.RandomMessages
 {
     /// <inheritdoc/>
-    public class PluginHandler : Plugin<Config>
+    public class PluginHandler : Plugin<Config, Translation>
     {
         /// <inheritdoc/>
         public override string Author => "Mistaken Devs";
 
         /// <inheritdoc/>
-        public override string Name => "";
+        public override string Name => "RandomMessages";
 
         /// <inheritdoc/>
-        public override string Prefix => "M";
+        public override string Prefix => "MRandomMessages";
 
         /// <inheritdoc/>
-        public override PluginPriority Priority => PluginPriority.Higher;
+        public override PluginPriority Priority => PluginPriority.Default;
 
         /// <inheritdoc/>
-        public override Version RequiredExiledVersion => new Version(2, 11, 0);
+        public override Version RequiredExiledVersion => new Version(3, 7, 2);
 
         /// <inheritdoc/>
         public override void OnEnabled()
         {
             Instance = this;
 
-            // new Handler(this);
+            new RandomMessagesHandler(this);
 
             API.Diagnostics.Module.OnEnable(this);
 

@@ -4,8 +4,9 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-using Mistaken.Updater.Config;
+using System.Collections.Generic;
 using System.ComponentModel;
+using Mistaken.Updater.Config;
 
 namespace Mistaken.RandomMessages
 {
@@ -23,6 +24,15 @@ namespace Mistaken.RandomMessages
 
         /// <inheritdoc/>
         [Description("Auto Update Settings")]
-        public System.Collections.Generic.Dictionary<string, string> AutoUpdateConfig { get; set; }
+        public Dictionary<string, string> AutoUpdateConfig { get; set; }
+
+        [Description("Minimum time to broadcast a random message")]
+        public int MinSec { get; set; } = 10;
+
+        [Description("Maximum time to broadcast a random message")]
+        public int MaxSec { get; set; } = 20;
+
+        [Description("How long should the message on the screen")]
+        public int BroadcastTime { get; set; } = 5;
     }
 }
