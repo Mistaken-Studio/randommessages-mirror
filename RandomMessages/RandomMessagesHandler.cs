@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using Exiled.API.Features;
 using MEC;
+using Mistaken.API;
 using Mistaken.API.Diagnostics;
 
 namespace Mistaken.RandomMessages
@@ -30,26 +31,29 @@ namespace Mistaken.RandomMessages
             Exiled.Events.Handlers.Server.RoundStarted -= this.Server_RoundStarted;
         }
 
-        private readonly List<string> messages = PluginHandler.Instance.Translation.Messages;
+        private List<string> messages;
 
         private void Server_RoundStarted()
         {
+            this.messages = PluginHandler.Instance.Translation.Messages;
             this.RunCoroutine(this.SendRandomMessage(PluginHandler.Instance.Config));
         }
 
         private IEnumerator<float> SendRandomMessage(Config config)
         {
-            yield return Timing.WaitForSeconds(UnityEngine.Random.Range(config.MinSec, config.MaxSec));
-            while (Round.IsStarted)
+            yield return Timing.WaitForSeconds(1);
+            int rid = RoundPlus.RoundId;
+            do
             {
+                yield return Timing.WaitForSeconds(UnityEngine.Random.Range(config.MinSec, config.MaxSec));
+
                 int randomint = UnityEngine.Random.Range(config.MinSec, config.MaxSec);
                 string selectedmessage = this.messages[randomint];
 
-                Map.Broadcast(message: selectedmessage, duration: (ushort)PluginHandler.Instance.Config.BroadcastTime);
+                Map.Broadcast(message: selectedmessage, duration: PluginHandler.Instance.Config.BroadcastTime);
                 this.messages.RemoveAt(randomint);
-
-                yield return Timing.WaitForSeconds(UnityEngine.Random.Range(config.MinSec, config.MaxSec));
             }
+            while (Round.IsStarted && RoundPlus.RoundId == rid);
         }
     }
 }

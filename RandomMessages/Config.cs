@@ -30,18 +30,18 @@ namespace Mistaken.RandomMessages
         /// Gets or sets the minimal value to broadcast a message.
         /// </summary>
         [Description("Minimum time to broadcast a random message")]
-        public int MinSec { get; set; } = 10;
+        public int MinSec { get; set; } = 180;
 
         /// <summary>
         /// Gets or sets the maximal value to broadcast a message.
         /// </summary>
         [Description("Maximum time to broadcast a random message")]
-        public int MaxSec { get; set; } = 20;
+        public int MaxSec { get; set; } = 300;
 
         /// <summary>
         /// Gets or sets a value of how long the message should be displayed on the screen.
         /// </summary>
         [Description("How long should the message be on the screen")]
-        public int BroadcastTime { get; set; } = 5;
+        public ushort BroadcastTime { get; set; } = 5;
     }
 }
