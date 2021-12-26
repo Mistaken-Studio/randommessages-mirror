@@ -46,7 +46,8 @@ namespace Mistaken.RandomMessages
             do
             {
                 yield return Timing.WaitForSeconds(UnityEngine.Random.Range(config.MinSec, config.MaxSec));
-
+                if (!(Round.IsStarted && RoundPlus.RoundId == rid && this.messages.Count > 0))
+                    break;
                 int randomint = UnityEngine.Random.Range(0, this.messages.Count);
                 string selectedmessage = this.messages[randomint];
 
